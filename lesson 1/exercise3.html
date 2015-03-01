@@ -65,14 +65,15 @@
 			  if (library.standards[i].title === title) {
 			  	library.standards[i].isBorrowed = true;
 			  }; 
-			  if (library.standards[i].isBorrowed == true) {
-			  	return library.standards[i];
-			  };
 			};
         }
         
         function borrowVipBook(title) {
-            //!!!!!!!!!
+			for (var i=0; i < library.vip.length; i++) {
+			  if (library.vip[i].title === title) {
+			  	library.vip[i].isBorrowed = true;
+			  }; 
+			};
         }
         
         
@@ -86,6 +87,7 @@
             for (var i=0; i < library.standards.length; i++) {
             	if (library.standards[i].isBorrowed === true) {
             		borrowed.push(library.standards[i].title);
+            		free.splice(library.standards[i].title,1);
             	};
             };
            
@@ -94,9 +96,19 @@
         }
         
         function printVip() {
-            var free = library.vip.title, borrowed = 'vb';
+            var free = [], borrowed = [];
+           
+            for (var i=0; i < library.vip.length; i++) {
+              free.push(library.standards[i].title);
+            };
             
-            //!!!!!!!!!
+            for (var i=0; i < library.vip.length; i++) {
+            	if (library.vip[i].isBorrowed === true) {
+            		borrowed.push(library.vip[i].title);
+            		library.vip.slice(library.vip[i].title,1);
+            		free.splice(library.vip[i].title,1);
+            	};
+            };
             
             document.getElementById("vipFreeLabel").innerHTML = free;
             document.getElementById("vipBorrowedLabel").innerHTML = borrowed;

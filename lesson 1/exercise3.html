@@ -87,7 +87,7 @@
             for (var i=0; i < library.standards.length; i++) {
             	if (library.standards[i].isBorrowed === true) {
             		borrowed.push(library.standards[i].title);
-            		free.splice(library.standards[i].title,1);
+            		free.splice(i,1);
             	};
             };
            
@@ -99,14 +99,13 @@
             var free = [], borrowed = [];
            
             for (var i=0; i < library.vip.length; i++) {
-              free.push(library.standards[i].title);
+              free.push(library.vip[i].title);
             };
             
             for (var i=0; i < library.vip.length; i++) {
             	if (library.vip[i].isBorrowed === true) {
             		borrowed.push(library.vip[i].title);
-            		library.vip.slice(library.vip[i].title,1);
-            		free.splice(library.vip[i].title,1);
+            		free.splice(i,1);
             	};
             };
             
